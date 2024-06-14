@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Infidelidades</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="themes/prism.css">
+</head>
+<body>
+    <header>
+        <div class ="menu-hamburguesa" onclick="toggleMenu()">
+            &#9776;
+        </div>
+        <nav class="menu" id ="menu">
+            <h2>Índice</h2>
+            <ul>
+                <li>
+                    <a onclick="toggleSubmenu('sub1')">Introducción</a>
+                    <ul class="submenu" id="sub1">
+                            <li><a href ="#descProblema">Descripción del problema</a></li>
+                            <li><a href = "#objetivos">Objetivos del estudio</a></li>
+                            <li><a href = "#descDatos">Descripción de los datos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a onclick="toggleSubmenu('sub2')">Metodologías a usar</a>
+                    <ul class="submenu" id="sub2">
+                        <li><a href ="#metoEDA">Análisis Exploratorio de Datos</a></li>
+                        <li><a href = "#anaCorr">Análisis de Correlación</a></li>
+                        <li><a href = "#arbolDesc">Árbol de decisión</a></li>
+                        <li><a href = "#valCruzada">Validación Cruzada</a></li>
+                        <li><a href = "#res&diag">Análisis Residuales y Diagnósticos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a onclick="toggleSubmenu('sub3')">Análisis Exploratorio de Datos (EDA)</a>
+                        <ul class="submenu" id="sub3">
+                            <li><a href = "#variables">Descripción de variables</a></li>
+                        </ul>
+                </li>
+                <li>
+                    <a onclick="toggleSubmenu('sub4')">Análisis de Correlación</a>
+                    <ul class="submenu" id="sub4">
+                        <li><a href = "#correlacion">Coeficientes de correlación</a></li>
+                        <li><a href = "#interCorr">Interpretación de la matriz de correlación</a></li>
+                    </ul>
+                </li>
+                <li><a href = "#arboles">Árbol de desicion (Desicion Tree Classifier)</a></li>
+                <li><a href = "#conclusiones">Conclusiones</a></li>
+                <li><a href = "">Repositorio</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="sub-container"><h1>Estudio de infidelidades</h1></div>
+        <div class = "content">
+            <section id = "introduccion">
+                <h2>1. Introducción</h2>
+                <ul>
+                    <h3 id ="descProblema">1.1 Descripción del problema</h3>
+                    <p>En 1978, se llevó a cabo una encuesta dirigida a amas de casa con el propósito de identificar los factores que podrían llevar a la ocurrencia de amoríos extramatrimoniales o infidelidades. Este estudio se enfoca en comprender las razones detrás de tales comportamientos.</p>
+                    <h3 id ="objetivos">1.2 Objetivos del estudio</h3>
+                    <p>El objetivo principal de esta investigación consiste en discernir cuáles son los elementos o características en individuos y matrimonios que influyen en la predisposición a buscar relaciones amorosas fuera del matrimonio. Se busca identificar estos factores para comprender mejor el fenómeno de la infidelidad conyugal.</p>
+                    <h3 id ="descDatos">1.3 Descripción de los datos</h3>
+                    <p>Para lograr este objetivo, se analizarán los datos recopilados durante la encuesta de 1978. Estos datos proporcionan una perspectiva valiosa sobre las percepciones, experiencias y circunstancias asociadas con las infidelidades conyugales, lo que permitirá obtener información significativa sobre este fenómeno y sus determinantes.</p>
+            
+                </ul>
+            </section>
+            <section id = "metodologias">
+                <h2>2. Metodologías</h2>
+                <p>Para determinar qué factores provocan que algunas personas tengan relaciones extramatrimoniales, se emplearán varios métodos de análisis. Estos métodos incluyen:</p>
+                <ul>
+                    <h3 id="metoEDA">2.1 Análisis Exploratorio de Datos (EDA)</h3>
+                    <ul>
+                        <li><p><strong>Descripción del Dataset:</strong> Se describirán las variables del dataset a fin de entender varias características que se tuvieron en cuenta al realizar la encuesta.</p>
+                        </li>
+                        <li><p><strong>Visualización de Datos:</strong> Se utilizarán gráficos para detectar patrones preliminares entre variables.</p>
+                        </li>
+                        <li><p><strong>Estadísticas Descriptivas:</strong> Se calcularán medias, desviaciones estándar y otras medidas para resumir las características principales de los datos.</p>
+                        </li>
+                    </ul>
+                    <h3 id ="anaCorr">2.2 Análisis de Correlación</h3>
+                    <ul>
+                        <li><p><strong>Coeficientes de Correlación:</strong> Se calcularon coeficientes de correlación para identificar relaciones lineales entre las variables cuantitativas y la ocurrencia de relaciones extramatrimoniales.</p>
+                        </li>
+                        <li><p><strong>Matriz de Correlación:</strong> Se construirá una matriz de correlación para visualizar todas las relaciones bivariadas entre las variables del estudio.</p>
+                        </li>
+                    </ul>
+                    <h3 id="arbolDesc">2.3 Árboles de Decisión</h3>
+                    <ul>
+                        <li>
+                            <p><strong>Construcción del Árbol:</strong> Se construirán árboles de decisión para segmentar los datos y entender cómo diferentes combinaciones de variables influyen en la ocurrencia de relaciones extramatrimoniales.</p>
+                            <p><strong>Análisis de Importancia de Variables:</strong> Los árboles de decisión permitirán identificar las variables más importantes al dividir repetidamente los datos en subconjuntos basados en la variable que mejor separa las clases objetivo.</p>
+                        </li>
+                    </ul>
+                    <h3 id="valCruzada">2.4 Validación Cruzada</h3>
+                    <ul>
+                        <li>
+                            <p><strong>K-Folds Cross-Validation:</strong> Para evaluar la robustez y la precisión de los modelos predictivos, se utilizará la validación cruzada con K particiones, asegurando que los modelos no estén sobre ajustados a un conjunto de datos específico y que generalicen bien a nuevos datos.</p>
+                        </li>
+                    </ul>
+                    <h3 id ="res&diag">2.5 Análisis Residuales y Diagnósticos</h3>
+                    <ul>
+                        <li>
+                            <p><strong>Diagnóstico de Modelos:</strong> Se analizarán los residuales para identificar posibles problemas con los modelos ajustados, como puntos influyentes y heterocedasticidad.</p>
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id ="eda">
+                <h2>3. Análisis Exploratorio de Datos (EDA)</h2>
+                <ul>
+                    <h3 id ="variables">3.1 Descripción de variables</h3>
+                    <p>Vamos a empezar por leer nuestro conjunto de datos (dataset):</p>
+                    <!-- lenguage: python -->
+                    <pre><code class="language-python">
+# Dataset of 1978 survey to womans about extramatrimonial affairs
+# http://statsmodels.sourceforge.net/stable/datasets/generated/fair.html
+                        
+import statsmodels.api as sm 
+affairs_df = sm.datasets.fair.load_pandas().data
+affairs_df.head()
+                    </code></pre>
+                    <div class="tabla">
+                    <table>
+                            <tr>
+                                <td class ="title">rate_marriage</td>
+                                <td class ="title">age</td>
+                                <td class ="title">yrs_married</td>
+                                <td class ="title">children</td>
+                                <td class ="title">religious</td>
+                                <td class ="title">educ</td>
+                                <td class ="title">occupation</td>
+                                <td class ="title">occupation_husb</td>
+                                <td class ="title">affairs</td>
+                            </tr>
+                            <tr>
+                                <td>3.0</td>
+                                <td>32.0</td>
+                                <td>9.0</td>
+                                <td>3.0</td>
+                                <td>3.0</td>
+                                <td>17.0</td>
+                                <td>2.0</td>
+                                <td>5.0</td>
+                                <td>0.1111111</td>
+                            </tr>
+                            <tr>
+                                <td>3.0</td>
+                                <td>27.0</td>
+                                <td>13.0</td>
+                                <td>3.0</td>
+                                <td>1.0</td>
+                                <td>14.0</td>
+                                <td>3.0</td>
+                                <td>4.0</td>
+                                <td>3.2307692</td>
+                            </tr>
+                            <tr>
+                                <td>4.0</td>
+                                <td>22.0</td>
+                                <td>2.5</td>
+                                <td>0.0</td>
+                                <td>1.0</td>
+                                <td>16.0</td>
+                                <td>3.0</td>
+                                <td>5.0</td>
+                                <td>1.3999996</td>
+                            </tr>
+                            <tr>
+                                <td>4.0</td>
+                                <td>37.0</td>
+                                <td>16.5</td>
+                                <td>4.0</td>
+                                <td>3.0</td>
+                                <td>16.0</td>
+                                <td>5.0</td>
+                                <td>5.0</td>
+                                <td>0.7272727</td>
+                            </tr>
+                            <tr>
+                                <td>5.0</td>
+                                <td>27.0</td>
+                                <td>9.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>14.0</td>
+                                <td>3.0</td>
+                                <td>4.0</td>
+                                <td>4.666666</td>
+                            </tr>
+                        </table>
+                    </div>
+                        <p>El sitio web de <code class="lenguage-python"><span class="token keyword" style="font-size:15px; ">statsmodels</span ></code> nos proporciona un diccionario de datos con el cual interpretar la tabla:</p>
+                            <ul>
+                                <li><strong>rate_marriage:</strong> Calificación del matrimonio por la esposa (1: muy bajo, 2: bajo, 3: aceptable, 4: bueno, 5: muy bueno) - Nivel ordinal.</li>
+                                <li><strong>age:</strong> Edad de la esposa - Nivel ratio.</li>
+                                <li><strong>yrs_married:</strong> Años de casada - Nivel ratio.</li>
+                                <li><strong>children:</strong> Número de hijos - Nivel ratio.</li>
+                                <li><strong>religious:</strong> Qué tan religiosa es la esposa (1: no, 2: un poco, 3: bastante, 4: fuertemente) - Nivel ordinal.</li>
+                                <li><strong>educ:</strong> Nivel de educación (9: primaria, 12: secundaria, 14: universidad no completada, 16: universitario graduado, 17: posgrado no completado, 20: maestría/doctorado) - Nivel ordinal.</li>
+                                <li><strong>occupation:</strong> Ocupación de la esposa (1: estudiante, 2: agricultura, 3: oficinista, 4: profesora, consejera, trabajadora social, enfermera, artista, escritora, técnica, trabajadora calificada, 5: gerencial, administrativo, negocios, 6: profesional con título avanzado) - Nivel nominal.</li>
+                                <li><strong>occupation_hus:</strong> Ocupación del esposo (mismas opciones que occupation) - Nivel nominal.</li>
+                                <li><strong>affairs:</strong> Tiempo en relaciones extramatrimoniales - Nivel ratio.</li>
+                            </ul>
+                </ul>
+            </section>
+            <section id ="correlacion">
+                <h2>4. Análisis de Correlación</h2>
+                <ul>
+                    <h3>4.1 Coeficientes de correlación</h3>
+                    <p>Ya tenemos datos cuantitativos sobre el matrimonio, pero queremos identificar los factores que llevan a la infidelidad, sin importar la duración de esta. Por eso, necesitamos una nueva variable categórica llamada <strong>affair_binary</strong>, que tomará el valor <code class="lenguage-python"><span class ="token keyword" style ="font-size: 15px;">true</span></code> si hubo infidelidad y <code class="lenguage-python"><span class ="token keyword" style ="font-size: 15px;">false</span></code> si no hubo.</p>
+                    <!-- lenguage: python -->
+                    <pre><code class="language-python">
+#creating a new categorical variable (affairs_binary)
+affairs_df['affairs_binary'] = (affairs_df['affairs']>0)
+                    </code></pre>
+                    <p>Esta variable nos guía en el sentido de si hubo o no infidelidad. Ahora para continuar, vamos a tratar de encontrar qué variables están asociadas con nuestros resultados.</p>
+                    <pre><code class="language-python">
+#find linear correlations between variables and affaris_binary
+affairs_df.corr()
+                    </code></pre>
+                    <div class ="tabla">
+                    <table>
+                        <tr>
+                            <td class="title">rate_marriage</td>
+                            <td class="title">age</td>
+                            <td class="title">yrs_married</td>
+                            <td class="title">children</td>
+                            <td class="title">religious</td>
+                            <td class="title">educ</td>
+                            <td class="title">occupation</td>
+                            <td class="title">occupation_husb</td>
+                            <td class="title">affairs</td>
+                            <td class="title">affairs_binary</td>
+                        </tr>
+                        <tr>
+                            <td>1.0</td>
+                            <td>-0.11112683617766334</td>
+                            <td>-0.12897844574752598</td>
+                            <td>-0.12916120274747545</td>
+                            <td>0.07879426117198471</td>
+                            <td>0.07986880956005979</td>
+                            <td>0.03952803958346814</td>
+                            <td>0.02774452536270288</td>
+                            <td>-0.17806815982826169</td>
+                            <td>-0.33177597056524954</td>
+                        </tr>
+                        <tr>
+                            <td>-0.11112683617766334</td>
+                            <td>1.0</td>
+                            <td>0.8940818368147442</td>
+                            <td>0.6739021426297914</td>
+                            <td>0.13659814013585395</td>
+                            <td>0.0279599464076646</td>
+                            <td>0.1061267001106632</td>
+                            <td>0.16256731150386775</td>
+                            <td>-0.08996417067457886</td>
+                            <td>0.14651897485301596</td>
+                        </tr>
+                        <tr>
+                            <td>-0.12897844574752598</td>
+                            <td>0.8940818368147442</td>
+                            <td>1.0</td>
+                            <td>0.7728056953383869</td>
+                            <td>0.13268274823966708</td>
+                            <td>-0.10905799965832896</td>
+                            <td>0.04178156446202257</td>
+                            <td>0.12813517394439353</td>
+                            <td>-0.0877373681792819</td>
+                            <td>0.2031091714729866</td>
+                        </tr>
+                        <tr>
+                            <td>-0.12916120274747545</td>
+                            <td>0.6739021426297914</td>
+                            <td>0.7728056953383869</td>
+                            <td>1.0</td>
+                            <td>0.14184451187466116</td>
+                            <td>-0.14191813548017201</td>
+                            <td>-0.015067752899487634</td>
+                            <td>0.08666044649329376</td>
+                            <td>-0.07027830986587275</td>
+                            <td>0.15983268025102454</td>
+                        </tr>
+                        <tr>
+                            <td>0.07879426117198471</td>
+                            <td>0.13659814013585395</td>
+                            <td>0.13268274823966708</td>
+                            <td>0.14184451187466116</td>
+                            <td>1.0</td>
+                            <td>0.03224459718638146</td>
+                            <td>0.03574646703239831</td>
+                            <td>0.004060542761635847</td>
+                            <td>-0.12593302914650825</td>
+                            <td>-0.12929943639115252</td>
+                        </tr>
+                        <tr>
+                            <td>0.07986880956005979</td>
+                            <td>0.0279599464076646</td>
+                            <td>-0.10905799965832896</td>
+                            <td>-0.14191813548017201</td>
+                            <td>0.03224459718638146</td>
+                            <td>1.0</td>
+                            <td>0.38228633986688043</td>
+                            <td>0.18393237211036126</td>
+                            <td>-0.0177398474339083</td>
+                            <td>-0.07528010047071443</td>
+                        </tr>
+                        <tr>
+                            <td>0.03952803958346814</td>
+                            <td>0.1061267001106632</td>
+                            <td>0.04178156446202257</td>
+                            <td>-0.015067752899487634</td>
+                            <td>0.03574646703239831</td>
+                            <td>0.38228633986688043</td>
+                            <td>1.0</td>
+                            <td>0.20115587114725958</td>
+                            <td>0.0044686351258379844</td>
+                            <td>0.028981305237361404</td>
+                        </tr>
+                        <tr>
+                            <td>0.02774452536270288</td>
+                            <td>0.16256731150386775</td>
+                            <td>0.12813517394439353</td>
+                            <td>0.08666044649329376</td>
+                            <td>0.004060542761635847</td>
+                            <td>0.18393237211036126</td>
+                            <td>0.20115587114725958</td>
+                            <td>1.0</td>
+                            <td>-0.015613941860960299</td>
+                            <td>0.017637478501598355</td>
+                        </tr>
+                        <tr>
+                            <td>-0.17806815982826169</td>
+                            <td>-0.08996417067457886</td>
+                            <td>-0.0877373681792819</td>
+                            <td>-0.07027830986587275</td>
+                            <td>-0.12593302914650825</td>
+                            <td>-0.0177398474339083</td>
+                            <td>0.0044686351258379844</td>
+                            <td>-0.015613941860960299</td>
+                            <td>1.0</td>
+                            <td>0.4640455112737583</td>
+                        </tr>
+                        <tr>
+                            <td>-0.33177597056524954</td>
+                            <td>0.14651897485301596</td>
+                            <td>0.2031091714729866</td>
+                            <td>0.15983268025102454</td>
+                            <td>-0.12929943639115252</td>
+                            <td>-0.07528010047071443</td>
+                            <td>0.028981305237361404</td>
+                            <td>0.017637478501598355</td>
+                            <td>0.4640455112737583</td>
+                            <td>1.0</td>
+                        </tr>
+                    </table>
+                </div>
+                    <p>La correlación muestra la relación y dirección entre dos variables, pero no implica causalidad. Al observar la última fila o columna de la matriz de correlación (ignorando la diagonal principal), nos enfocamos en las variables con correlaciones cercanas a <strong>-1</strong> o <strong>1</strong>. Aquí destacan algunas variables importantes:</p>
+                    <ul>
+                        <li><strong>affairs</strong></li>
+                        <li><strong>age</strong></li>
+                        <li><strong>yrs_married</strong></li>
+                        <li><strong>children</strong></li>
+                    </ul>
+                    <p>Estas variables tienen las correlaciones más fuertes. Primero, descartamos la variable <strong>affairs</strong> porque la usamos para crear <strong>affairs_binary</strong>.</p>
+                    <h3 id ="interCorr">4.2 Interpretación de la matriz de correlación</h3>
+                    <p>Usaremos un mapa de calor (heat map) para identificar rápidamente qué variables están correlacionadas positiva, negativamente o no correlacionadas.</p>
+                    <pre><code class="language-python">
+import seaborn as sns
+sns.heatmap(affairs_df.corr(), annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+                    </code></pre>
+                    <div class ="sub-container">
+                    <div class ="heatmap">
+                        <img src="images/heatmap.png" alt="HeatMap">
+                        <p>Estamos buscando las áreas con colores más cercanas al rojo y azul oscuro, pues están asociadas con las características más correlacionadas.</p>
+                    </div>
+                </div>
+                </ul>
+            </section>
+            <section id="arboles">
+                <h2>5. Árboles de Decisión (Decision Tree Classifier)</h2>
+                <ul>
+                    <p>Como se dijo, aunque dos variables estén correlacionadas, no necesariamente una causa la otra. Al evaluar los coeficientes de un árbol de decisión, podemos identificar otras variables que influyen directamente en el amor extramatrimonial. Sin embargo, este método no sigue una relación lineal, sino que considera múltiples factores interconectados.</p>
+                <p>Primero, para llevar a cabo este método hagamos un DataFrame X e Y, donde X serán todas las variables menos la que vamos a predecir (<strong>affair_binary</strong>).</p>
+                <pre><code class="language-python">
+affairs_X = affairs_df.drop(['affairs','affairs_binary'], axis = 1)
+#dataframe without affairs and affairs_binary column
+                    
+affairs_Y = affairs_df['affairs_binary']
+                </code></pre>
+                <p>En consiguiente, instanciamos un modelo de aprendizaje basado en árboles de decisión y validamos de forma cruzada si el modelo adecua nuestros datos de forma correcta:</p>
+                <pre><code class="language-python">
+from sklearn.tree import DecisionTreeClassifier
+model = DecisionTreeClassifier()
+#instance the model
+                    
+from sklearn.model_selection import cross_val_score
+#import validation module
+                    
+#accuracy on the training test
+scores = cross_val_score(model, affairs_X,affairs_Y, cv=10)
+                    
+print(scores.mean(), "average accuracy")
+#0.6580272602509798 average accuracy
+
+print(scores.std(), "standard desviation") #low, the variance of the model is low
+#0.018380845587135434 standard desviation
+                    
+#Cross validation good
+                </code></pre>
+                <p>
+                    Ya que comprobamos que nuestro modelo es confiable, podemos ajustar el modelo a nuestro dataset y usar la métrica de importancia para saber qué variables el árbol de decisión considera importantes:
+                </p>
+                <pre><code class="language-python">
+import pandas as pd
+
+#Exploring variables with big impact like:
+#rate_marriage, yrs_married and occupation_husb
+#occupation_husb doesn't make sense because is on dominal level
+model.fit(affairs_X, affairs_Y)
+pd.DataFrame({'feature':affairs_X.columns, 'importance':model.feature_importances_}).sort_values('importance').tail(3)
+                </code></pre>
+                <table>
+                    <tr>
+                        <td class ="title">feature</td>
+                        <td class ="title">importance</td>
+                    </tr>
+                    <tr>
+                        <td>yrs_married</td>
+                        <td>0.13917187277034612</td>
+                    </tr>
+                    <tr>
+                        <td>rate_marriage</td>
+                        <td>0.14225314978851158</td>
+                    </tr>
+                    <tr>
+                        <td>occupation_husb</td>
+                        <td>0.17413768402148153</td>
+                    </tr>
+                </table>
+                <p>
+                    Aquí podemos ver que <strong>yrs_married</strong> y <strong>rate marriage</strong> son importantes. Sin embargo, la más importante es <strong>occupation_husb</strong>, algo que no tiene sentido ya que es una variable nominal. Para arreglar esto, vamos a usar la técnica de dummy variables (variables indicadoras) en <strong>occupation_husb</strong> y <strong>occupation</strong> para indicar si existe la presencia de alguna característica categórica.
+                </p>
+                <p>Comenzando por la columna <strong>ocuppation</strong>:</p>
+                <pre><code class="language-python">
+#Dummy variables:
+#Encoding nominal data using separate columns
+occuptation_dummies = pd.get_dummies(affairs_df['occupation'], prefix='occ_').iloc[:, 1:]
+                    
+#concatenate the dummy variable onto the original dataframe
+affairs_df = pd.concat([affairs_df, occuptation_dummies], axis=1)
+affairs_df.head()
+                </code></pre>
+                <p>Este DataFrame tiene nuevas columnas:</p>
+                <div class="tabla">
+                    <table>
+                        <tr>
+                            <td class="title">rate_marriage</td>
+                            <td class="title">age</td>
+                            <td class="title">yrs_married</td>
+                            <td class="title">children</td>
+                            <td class="title">religious</td>
+                            <td class="title">educ</td>
+                            <td class="title">occupation</td>
+                            <td class="title">occupation_husb</td>
+                            <td class="title">affairs</td>
+                            <td class="title">affairs_binary</td>
+                            <td class="title">occ__2.0</td>
+                            <td class="title">occ__3.0</td>
+                            <td class="title">occ__4.0</td>
+                            <td class="title">occ__5.0</td>
+                            <td class="title">occ__6.0</td>
+                        </tr>
+                        <tr>
+                            <td>3.0</td>
+                            <td>32.0</td>
+                            <td>9.0</td>
+                            <td>3.0</td>
+                            <td>3.0</td>
+                            <td>17.0</td>
+                            <td>2.0</td>
+                            <td>5.0</td>
+                            <td>0.1111111</td>
+                            <td>True</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>3.0</td>
+                            <td>27.0</td>
+                            <td>13.0</td>
+                            <td>3.0</td>
+                            <td>1.0</td>
+                            <td>14.0</td>
+                            <td>3.0</td>
+                            <td>4.0</td>
+                            <td>3.2307692</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>4.0</td>
+                            <td>22.0</td>
+                            <td>2.5</td>
+                            <td>0.0</td>
+                            <td>1.0</td>
+                            <td>16.0</td>
+                            <td>3.0</td>
+                            <td>5.0</td>
+                            <td>1.3999996</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>4.0</td>
+                            <td>37.0</td>
+                            <td>16.5</td>
+                            <td>4.0</td>
+                            <td>3.0</td>
+                            <td>16.0</td>
+                            <td>5.0</td>
+                            <td>5.0</td>
+                            <td>0.7272727</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>5.0</td>
+                            <td>27.0</td>
+                            <td>9.0</td>
+                            <td>1.0</td>
+                            <td>1.0</td>
+                            <td>14.0</td>
+                            <td>3.0</td>
+                            <td>4.0</td>
+                            <td>4.666666</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>Hay que recordar que estas nuevas columnas representan una variable binaria que dice si la esposa tiene la ocupación 2, 4 u otra.</p>
+                <p>Ahora para la columna <strong>ocuppation_husb</strong>:</p>
+                <pre><code class="language-python">
+#Dummy variables for ocuppation_husb
+#as before
+occuptation_dummies = pd.get_dummies(affairs_df['occupation_husb'], prefix='occ_husb_').iloc[:, 1:]
+                    
+affairs_df = pd.concat([affairs_df, occuptation_dummies], axis=1)
+affairs_df.head()
+                </code></pre>
+                <div class ="tabla">
+                    <table>
+                        <tr>
+                            <td>rate_marriage</td>
+                            <td>age</td>
+                            <td>yrs_married</td>
+                            <td>children</td>
+                            <td>religious</td>
+                            <td>educ</td>
+                            <td>occupation</td>
+                            <td>occupation_husb</td>
+                            <td>affairs</td>
+                            <td>affairs_binary</td>
+                            <td>occ__2.0</td>
+                            <td>occ__3.0</td>
+                            <td>occ__4.0</td>
+                            <td>occ__5.0</td>
+                            <td>occ__6.0</td>
+                            <td>occ_husb__2.0</td>
+                            <td>occ_husb__3.0</td>
+                            <td>occ_husb__4.0</td>
+                            <td>occ_husb__5.0</td>
+                            <td>occ_husb__6.0</td>
+                        </tr>
+                        <tr>
+                            <td>3.0</td>
+                            <td>32.0</td>
+                            <td>9.0</td>
+                            <td>3.0</td>
+                            <td>3.0</td>
+                            <td>17.0</td>
+                            <td>2.0</td>
+                            <td>5.0</td>
+                            <td>0.1111111</td>
+                            <td>True</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>3.0</td>
+                            <td>27.0</td>
+                            <td>13.0</td>
+                            <td>3.0</td>
+                            <td>1.0</td>
+                            <td>14.0</td>
+                            <td>3.0</td>
+                            <td>4.0</td>
+                            <td>3.2307692</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>4.0</td>
+                            <td>22.0</td>
+                            <td>2.5</td>
+                            <td>0.0</td>
+                            <td>1.0</td>
+                            <td>16.0</td>
+                            <td>3.0</td>
+                            <td>5.0</td>
+                            <td>1.3999996</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>4.0</td>
+                            <td>37.0</td>
+                            <td>16.5</td>
+                            <td>4.0</td>
+                            <td>3.0</td>
+                            <td>16.0</td>
+                            <td>5.0</td>
+                            <td>5.0</td>
+                            <td>0.7272727</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td>5.0</td>
+                            <td>27.0</td>
+                            <td>9.0</td>
+                            <td>1.0</td>
+                            <td>1.0</td>
+                            <td>14.0</td>
+                            <td>3.0</td>
+                            <td>4.0</td>
+                            <td>4.666666</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>False</td>
+                            <td>True</td>
+                            <td>False</td>
+                            <td>False</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    Ahora que tenemos nuevas columnas, vamos a usar nuevamente nuestro árbol de decisión y encontrar finalmente las variables más importantes:
+                </p>
+                <pre><code class="language-python">
+#remove appropiate columns for feature dataset
+affairs_X = affairs_df.drop(['affairs','occupation','affairs_binary','occupation_husb'],axis=1)
+affairs_Y = affairs_df['affairs_binary']
+                    
+model = DecisionTreeClassifier()
+                    
+#check the accuracy on the training set
+scores = cross_val_score(model, affairs_X,affairs_Y,cv=10)
+print(scores.mean(),"average accuracy")
+print(scores.std(),"standard desviation") #low, variance on model low too
+                </code></pre>
+                <pre><code class="language-python">
+#Exploring individual features with biggest impact
+model.fit(affairs_X,affairs_Y)
+pd.DataFrame({'feature':affairs_X.columns,'importance':model.feature_importances_}).sort_values('importance').tail(10)
+                </code></pre>
+                <div class ="sub-container">
+                <table>
+                    <tr>
+                        <td class="title">feature</td>
+                        <td class="title">importance</td>
+                    </tr>
+                    <tr>
+                        <td>occ__4.0</td>
+                        <td>0.023713353864179713</td>
+                    </tr>
+                    <tr>
+                        <td>occ_husb__5.0</td>
+                        <td>0.024807281827384505</td>
+                    </tr>
+                    <tr>
+                        <td>occ_husb__4.0</td>
+                        <td>0.025553401528473088</td>
+                    </tr>
+                    <tr>
+                        <td>occ__3.0</td>
+                        <td>0.02676315379356614</td>
+                    </tr>
+                    <tr>
+                        <td>religious</td>
+                        <td>0.10028972071869328</td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td>0.1121282696487419</td>
+                    </tr>
+                    <tr>
+                        <td>educ</td>
+                        <td>0.12631148884482726</td>
+                    </tr>
+                    <tr>
+                        <td>children</td>
+                        <td>0.1290342745425381</td>
+                    </tr>
+                    <tr>
+                        <td>yrs_married</td>
+                        <td>0.1338784427157117</td>
+                    </tr>
+                    <tr>
+                        <td>rate_marriage</td>
+                        <td>0.1417944592245687</td>
+                    </tr>
+                </table>
+            </div>
+                </ul>
+            </section>
+            <section id="conclusiones">
+                <h2>6. Conclusiones</h2>
+                <p>Sintetizando, podemos tener por seguro que en 1978, las variables que inciden en la infidelidad dentro de matrimonios pueden llegar a ser muchas que cambian en relación al contexto. Sin embargo, a partir del análisis realizado en este caso de estudio por medio de técnicas como el árbol de decisión y la matriz de correlación, podemos determinar que las cinco que más influyen son:</p>
+                <ul>
+                    <li><strong>rate_marriage</strong>: Cuantos años de casados se encuentra la pareja.</li>
+                    <li><strong>children</strong>: Cuántos niños tienen los cónyuges.</li>
+                    <li><strong>educ</strong>: El nivel de educación que posee la esposa</li>
+                    <li><strong>age</strong>: Edad de la esposa.</li>
+                </ul>
+                <p>Esas cinco variables influyeron de manera significativa en 1978 cuando una mujer se veía envuelta en relaciones extramatrimoniales.</p>
+            </section>
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+    <script src="themes/prism.js"></script>
+</body>
+</html>

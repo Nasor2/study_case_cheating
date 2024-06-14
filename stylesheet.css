@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+h1,h2{
+    color: rgb(65, 167, 222);
+}
+header {
+    background-color: #f8f8f8;
+    padding: 0px 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.menu-hamburguesa {
+    margin-top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+nav {
+    top: 0px;
+    left: -300px;
+    width: 320px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    border-right: solid;
+    border-color: rgba(0, 22, 22, 0.4);
+
+}
+
+nav h2 {
+    margin-top: 18px;
+    font-size: 30px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    border-top: 1px solid;
+    list-style: none;
+    position: relative;
+
+}
+nav ul li a:hover {
+    background-color: #b1b1b1;
+}
+
+nav ul li a {
+    display: block;
+    padding: 12px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #4d4e53;
+    font-size: 20px;
+}
+
+.submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.submenu li {
+    margin: 5px 0;
+}
+
+.show {
+    display: block;
+}
+
+.show-menu {
+    display: none;
+}
+
+.indice ul {
+    list-style-type: none;
+}
+
+main {
+    flex-grow: 1;
+    padding: 0px 20px;
+    overflow-y: auto;
+}
+
+section {
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+li {
+    margin: 10px 0;
+}
+
+
+/* Definir estilos básicos para el bloque de código */
+code.language-python {
+    display: block;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    /* Permitir que el código se ajuste a la línea */
+}
+
+table {
+    align-content: center;
+    justify-content: center;
+    width: auto;
+    border-collapse: collapse;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+table th,
+table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table tr .title {
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table th,
+table td {
+    text-align: center;
+}
+
+.tabla {
+    border: 1px solid #ddd;
+    padding: 0px;
+    overflow-y: scroll;
+    height: auto;
+}
+
+.heatmap {
+
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+.sub-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
+    .menu-hamburguesa {
+      display: block;
+    }
+  
+    nav {
+      left: -250px;
+    }
+  
+    nav.show-menu {
+      left: 0;
+    }
+  
+    main {
+      margin-left: 0;
+    }
+  }
