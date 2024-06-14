@@ -1,0 +1,1 @@
+This repository contains a comprehensive case study on extramarital affairs, focusing on various factors influencing infidelity in marriages. The case study includes data analysis, statistical models, and insights derived from real-world data. See it here.
